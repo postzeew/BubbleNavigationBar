@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BubbleNavigationBar</string>
+
+    <string name="menu_home">Домой</string>
 </resources>
