@@ -1,13 +1,13 @@
-package com.postzeew.bubblenavigationbar
+package com.postzeew.bubblenavigationbar.bubbleview
 
 import android.animation.ValueAnimator
 import android.view.View
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
 import androidx.core.view.updateLayoutParams
-import com.postzeew.bubblenavigationbar.BubbleViewAnimationState.*
-import com.postzeew.bubblenavigationbar.BubbleViewAnimatorType.COLLAPSE
-import com.postzeew.bubblenavigationbar.BubbleViewAnimatorType.EXPAND
+import com.postzeew.bubblenavigationbar.bubbleview.BubbleViewAnimationState.*
+import com.postzeew.bubblenavigationbar.bubbleview.BubbleViewAnimatorType.COLLAPSE
+import com.postzeew.bubblenavigationbar.bubbleview.BubbleViewAnimatorType.EXPAND
 
 private const val ANIMATION_DURATION = 200L
 

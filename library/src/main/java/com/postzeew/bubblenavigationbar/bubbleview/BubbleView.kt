@@ -1,4 +1,4 @@
-package com.postzeew.bubblenavigationbar
+package com.postzeew.bubblenavigationbar.bubbleview
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
@@ -11,11 +11,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import com.postzeew.bubblenavigationbar.R
 import com.postzeew.bubblenavigationbar.databinding.BubbleViewBinding
 
 private const val DISAPPEARING_ANIMATION_DURATION = 150L
 
-class BubbleView @JvmOverloads constructor(
+internal class BubbleView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0

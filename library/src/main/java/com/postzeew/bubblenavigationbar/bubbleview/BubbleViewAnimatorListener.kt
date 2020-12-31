@@ -1,4 +1,4 @@
-package com.postzeew.bubblenavigationbar
+package com.postzeew.bubblenavigationbar.bubbleview
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

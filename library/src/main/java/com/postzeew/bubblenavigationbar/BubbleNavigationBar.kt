@@ -7,6 +7,8 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.core.content.res.getResourceIdOrThrow
+import com.postzeew.bubblenavigationbar.bubbleview.BubbleView
+import com.postzeew.bubblenavigationbar.bubbleview.BubbleViewItem
 
 class BubbleNavigationBar @JvmOverloads constructor(
     context: Context,

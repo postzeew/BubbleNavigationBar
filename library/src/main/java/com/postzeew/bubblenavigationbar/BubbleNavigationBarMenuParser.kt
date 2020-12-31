@@ -10,7 +10,7 @@ import org.xmlpull.v1.XmlPullParser.START_TAG
 
 private const val MENU_TAG = "item"
 
-class BubbleNavigationBarMenuParser(
+internal class BubbleNavigationBarMenuParser(
     private val context: Context
 ) {
     fun parse(@MenuRes menuResId: Int): List<BubbleNavigationBarMenuItem> {

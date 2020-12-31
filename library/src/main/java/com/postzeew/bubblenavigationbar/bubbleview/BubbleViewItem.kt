@@ -1,10 +1,10 @@
-package com.postzeew.bubblenavigationbar
+package com.postzeew.bubblenavigationbar.bubbleview
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-data class BubbleViewItem(
+internal data class BubbleViewItem(
     val isActive: Boolean,
     @StringRes val titleResId: Int,
     @ColorRes val titleColorResId: Int,

@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 
-data class BubbleNavigationBarMenuItem(
+internal data class BubbleNavigationBarMenuItem(
     @IdRes val id: Int,
     @StringRes val titleResId: Int,
     @DrawableRes val iconResId: Int,

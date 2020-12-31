@@ -1,8 +1,9 @@
 package com.postzeew.bubblenavigationbar
 
 import androidx.annotation.ColorRes
+import com.postzeew.bubblenavigationbar.bubbleview.BubbleViewItem
 
-class BubbleNavigationBarMenuItemMapper(
+internal class BubbleNavigationBarMenuItemMapper(
     @ColorRes private val itemTitleColorResId: Int,
     @ColorRes private val itemIconColorResId: Int
 ) {
