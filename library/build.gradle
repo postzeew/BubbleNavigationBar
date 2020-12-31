@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'com.github.panpf.bintray-publish'
 }
 
 android {
@@ -40,4 +41,18 @@ dependencies {
     // Core
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.core:core-ktx:$coreKtxVersion"
+}
+
+publish {
+    def groupProjectId = 'com.postzeew'
+    def artifactProjectId = 'bubblenavigationbar'
+    def publishVersionId = '1.0.0'
+
+    userOrg = 'postzeew'
+    repoName = 'BubbleNavigationBar'
+    groupId = groupProjectId
+    artifactId = artifactProjectId
+    publishVersion = publishVersionId
+    desc = 'Animated navigation bar.'
+    website = 'https://github.com/postzeew/BubbleNavigationBar'
 }
