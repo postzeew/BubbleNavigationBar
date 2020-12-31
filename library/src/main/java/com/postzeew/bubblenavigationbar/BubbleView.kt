@@ -1,5 +1,7 @@
 package com.postzeew.bubblenavigationbar
 
+import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
@@ -11,6 +13,8 @@ import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import com.postzeew.bubblenavigationbar.databinding.BubbleViewBinding
 
+private const val DISAPPEARING_ANIMATION_DURATION = 150L
+
 class BubbleView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -18,11 +22,16 @@ class BubbleView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
     private val binding = BubbleViewBinding.inflate(LayoutInflater.from(context), this)
     private val animator = BubbleViewAnimator(binding.titleTextView) {
-        resetBackground()
+        resetBackground(withAnimation = true)
     }
 
     private val translucentColor = ContextCompat.getColor(context, R.color.translucent_color)
     private val transparentColor = ContextCompat.getColor(context, R.color.transparent_color)
+
+    private val disappearingAnimator = ValueAnimator.ofObject(ArgbEvaluator(), translucentColor, transparentColor).apply {
+        duration = DISAPPEARING_ANIMATION_DURATION
+        addUpdateListener { animator -> changeBackgroundColor(animator.animatedValue as Int) }
+    }
 
     val titleTextView: TextView
         get() = binding.titleTextView
@@ -57,11 +66,13 @@ class BubbleView @JvmOverloads constructor(
             animator.expandWithoutAnimation()
             setBackground()
         } else {
-            resetBackground()
+            resetBackground(withAnimation = false)
         }
     }
 
     fun switchState(isActive: Boolean) {
+        disappearingAnimator.cancel()
+
         if (!isActive) {
             setBackground()
         }
@@ -72,8 +83,12 @@ class BubbleView @JvmOverloads constructor(
         changeBackgroundColor(translucentColor)
     }
 
-    private fun resetBackground() {
-        changeBackgroundColor(transparentColor)
+    private fun resetBackground(withAnimation: Boolean) {
+        if (withAnimation) {
+            disappearingAnimator.start()
+        } else {
+            changeBackgroundColor(transparentColor)
+        }
     }
 
     private fun changeBackgroundColor(@ColorInt color: Int) {

@@ -9,7 +9,7 @@ import com.postzeew.bubblenavigationbar.BubbleViewAnimationState.*
 import com.postzeew.bubblenavigationbar.BubbleViewAnimatorType.COLLAPSE
 import com.postzeew.bubblenavigationbar.BubbleViewAnimatorType.EXPAND
 
-private const val ANIMATION_DURATION = 300L
+private const val ANIMATION_DURATION = 200L
 
 internal class BubbleViewAnimator(
     private val titleTextView: TextView,
