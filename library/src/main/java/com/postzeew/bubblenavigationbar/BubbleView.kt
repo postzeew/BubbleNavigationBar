@@ -17,7 +17,9 @@ class BubbleView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
     private val binding = BubbleViewBinding.inflate(LayoutInflater.from(context), this)
-    private val animator = BubbleViewAnimator(binding.titleTextView)
+    private val animator = BubbleViewAnimator(binding.titleTextView) {
+        resetBackground()
+    }
 
     private val translucentColor = ContextCompat.getColor(context, R.color.translucent_color)
     private val transparentColor = ContextCompat.getColor(context, R.color.transparent_color)
@@ -60,9 +62,7 @@ class BubbleView @JvmOverloads constructor(
     }
 
     fun switchState(isActive: Boolean) {
-        if (isActive) {
-            resetBackground()
-        } else {
+        if (!isActive) {
             setBackground()
         }
         animator.switchState()

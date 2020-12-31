@@ -12,7 +12,8 @@ import com.postzeew.bubblenavigationbar.BubbleViewAnimatorType.EXPAND
 private const val ANIMATION_DURATION = 300L
 
 internal class BubbleViewAnimator(
-    private val titleTextView: TextView
+    private val titleTextView: TextView,
+    private val onCollapsed: () -> Unit
 ) {
     private val expandedTitleWidth: Int by lazy {
         calculateTitleExpandedWidth()
@@ -80,6 +81,10 @@ internal class BubbleViewAnimator(
 
             val animatorListener = BubbleViewAnimatorListener(animatorType) { state ->
                 this@BubbleViewAnimator.state = state
+
+                if (state == COLLAPSED) {
+                    onCollapsed.invoke()
+                }
             }
             addListener(animatorListener)
         }
