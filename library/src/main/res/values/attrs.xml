@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="BubbleView">
+        <attr name="android:id" />
+        <attr name="android:title" />
+        <attr name="android:icon" />
+        <attr name="android:checked" />
+    </declare-styleable>
+
+    <declare-styleable name="BubbleNavigationBar">
+        <attr name="menu" format="reference" />
+        <attr name="itemTitleColor" format="reference" />
+        <attr name="itemIconColor" format="reference" />
+    </declare-styleable>
+
+</resources>

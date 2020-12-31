@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">BubbleNavigationBar</string>
 
-    <string name="menu_home">Домой</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_message">Messages</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_notification">Notifications</string>
+    <string name="menu_settings">Settings</string>
 </resources>

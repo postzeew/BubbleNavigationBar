@@ -31,6 +31,14 @@ internal class BubbleViewAnimator(
         }
     }
 
+    fun expandWithoutAnimation() {
+        state = EXPANDED
+        titleTextView.updateLayoutParams {
+            currentTitleWidth = expandedTitleWidth
+            width = currentTitleWidth
+        }
+    }
+
     private fun collapse() {
         expandAnimator?.cancel()
 

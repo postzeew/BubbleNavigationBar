@@ -1,15 +1,13 @@
 package com.postzeew.bubblenavigationbar
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import com.postzeew.bubblenavigationbar.databinding.BubbleViewBinding
 
@@ -21,10 +19,13 @@ class BubbleView @JvmOverloads constructor(
     private val binding = BubbleViewBinding.inflate(LayoutInflater.from(context), this)
     private val animator = BubbleViewAnimator(binding.titleTextView)
 
+    private val translucentColor = ContextCompat.getColor(context, R.color.translucent_color)
+    private val transparentColor = ContextCompat.getColor(context, R.color.transparent_color)
+
     val titleTextView: TextView
         get() = binding.titleTextView
 
-    lateinit var onClickListener: (View) -> Unit
+    lateinit var onClickListener: (BubbleView) -> Unit
 
     init {
         background = ContextCompat.getDrawable(context, R.drawable.bg_bubble_view)
@@ -36,26 +37,48 @@ class BubbleView @JvmOverloads constructor(
 
         setOnClickListener {
             onClickListener.invoke(this)
-            animator.switchState()
         }
     }
 
-    fun bind(data: Data) {
+    fun bind(item: BubbleViewItem) {
         with(binding.titleTextView) {
-            text = context.getString(data.titleResId)
-            setTextColor(ContextCompat.getColor(context, data.titleColorResId))
+            text = context.getString(item.titleResId)
+            setTextColor(ContextCompat.getColor(context, item.titleColorResId))
         }
 
         with(binding.iconImageView) {
-            setImageDrawable(ContextCompat.getDrawable(context, data.iconResId))
-            setColorFilter(ContextCompat.getColor(context, data.iconColorResId))
+            setImageDrawable(ContextCompat.getDrawable(context, item.iconResId))
+            setColorFilter(ContextCompat.getColor(context, item.iconColorResId))
+        }
+
+        if (item.isActive) {
+            animator.expandWithoutAnimation()
+            setBackground()
+        } else {
+            resetBackground()
         }
     }
 
-    data class Data(
-        @StringRes val titleResId: Int,
-        @ColorRes val titleColorResId: Int,
-        @DrawableRes val iconResId: Int,
-        @ColorRes val iconColorResId: Int
-    )
+    fun switchState(isActive: Boolean) {
+        if (isActive) {
+            resetBackground()
+        } else {
+            setBackground()
+        }
+        animator.switchState()
+    }
+
+    private fun setBackground() {
+        changeBackgroundColor(translucentColor)
+    }
+
+    private fun resetBackground() {
+        changeBackgroundColor(transparentColor)
+    }
+
+    private fun changeBackgroundColor(@ColorInt color: Int) {
+        background = (background as GradientDrawable).apply {
+            setColor(color)
+        }
+    }
 }
