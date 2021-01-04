@@ -10,6 +10,7 @@ internal class BubbleNavigationBarMenuItemMapper(
     fun mapToBubbleViewItem(menuItem: BubbleNavigationBarMenuItem): BubbleViewItem {
         return with(menuItem) {
             BubbleViewItem(
+                id = id,
                 isActive = isActive,
                 titleResId = titleResId,
                 titleColorResId = itemTitleColorResId,

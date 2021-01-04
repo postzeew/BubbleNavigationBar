@@ -41,6 +41,8 @@ class BubbleNavigationBar @JvmOverloads constructor(
 
     private fun createBubbleView(item: BubbleViewItem): BubbleView {
         return BubbleView(context).apply {
+            id = item.id
+
             layoutParams = FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
                 gravity = Gravity.CENTER
             }
@@ -66,6 +68,7 @@ class BubbleNavigationBar @JvmOverloads constructor(
         if (activeBubbleView == clickedBubbleView) {
             reselectListener?.invoke(clickedBubbleView.id)
         } else {
+            selectListener.invoke(clickedBubbleView.id)
             activeBubbleView.switchState(isActive = true)
             clickedBubbleView.switchState(isActive = false)
             activeBubbleView = clickedBubbleView
